@@ -27,14 +27,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Walking
-        // ==================================================================
-        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
-        {
-            // create new vector without changing the x-/z-axis and let the object rotate on
-            // the new obtained y-axis based on player-input
-            transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * movementSpeed * Time.deltaTime);
-        }
+
 
 
 
@@ -63,5 +56,28 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+    }
+
+    private void FixedUpdate() {
+                // Walking
+        // ==================================================================
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        {
+            // create new vector without changing the x-/z-axis and let the object rotate on
+            // the new obtained y-axis based on player-input
+            // transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * movementSpeed * Time.deltaTime);
+        
+            // horizontale & verticale waarde vd input vd player
+            float h = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
+            float v = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+
+            Debug.Log(h);
+            Debug.Log(v);
+
+            rb.AddForce(transform.right * h, ForceMode.Impulse);
+            rb.AddForce(transform.forward * v, ForceMode.Impulse);
+        
+        
+        }
     }
 }
