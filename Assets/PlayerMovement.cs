@@ -34,11 +34,12 @@ public class PlayerMovement : MonoBehaviour
 
         // jumping
         // ==================================================================
-        if (Input.GetButtonDown("Jump"))
+        // player upward force may not be applied if player is at a certain height or when below ground (you will need to be able to fall down)
+        if (Input.GetButtonDown("Jump") && CanMyPlayerJump() == true)
         {
             //transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpPower, 0), ForceMode.Force);
             GetComponent<Rigidbody>().velocity = Vector3.up * jumpVelocity;
-            Debug.Log("Velocity of RB: " + GetComponent<Rigidbody>().velocity.ToString());
+            // Debug.Log("Velocity of RB: " + GetComponent<Rigidbody>().velocity.ToString());
         }
 
 
@@ -71,13 +72,31 @@ public class PlayerMovement : MonoBehaviour
             float h = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
             float v = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
 
-            Debug.Log(h);
-            Debug.Log(v);
+            //Debug.Log(h);
+            //Debug.Log(v);
 
             rb.AddForce(transform.right * h, ForceMode.Impulse);
             rb.AddForce(transform.forward * v, ForceMode.Impulse);
         
         
         }
+
+    }
+
+    // player mayb only jump on groundLevel. when below ground, jump = off. when exceeding a certain height:  jump = off
+    private bool CanMyPlayerJump()
+    {
+        bool canJump;
+        if (transform.position.y > -0.1f && transform.position.y < 0.4f)
+        {
+            canJump = true;
+            Debug.Log("can jump");
+        }
+        else
+        {
+            canJump = false;
+            Debug.Log("NO JUMPING");
+        }
+        return canJump;
     }
 }

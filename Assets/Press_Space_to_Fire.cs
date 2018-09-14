@@ -29,7 +29,7 @@ public class Press_Space_to_Fire : MonoBehaviour
 
             //Sometimes bullets may appear rotated incorrectly due to the way its pivot was set from the original modeling package.
             //This is EASILY corrected here, you might have to rotate it from a different axis and or angle based on your particular mesh.
-            Temporary_Bullet_Handler.transform.Rotate(Vector3.left * 90);
+            // Temporary_Bullet_Handler.transform.Rotate(Vector3.left * 90);
 
             //Retrieve the Rigidbody component from the instantiated Bullet and control it.
             Rigidbody Temporary_RigidBody;
@@ -37,6 +37,10 @@ public class Press_Space_to_Fire : MonoBehaviour
 
             //Tell the bullet to be "pushed" forward by an amount set by Bullet_Forward_Force.
             Temporary_RigidBody.AddForce(transform.forward * Bullet_Forward_Force);
+            //Temporary_RigidBody.AddTorque(new Vector3(transform.position.x + 90, transform.position.y, transform.position.z) * Time.deltaTime, ForceMode.Force);
+            Temporary_RigidBody.AddTorque(transform.right * 2 * Time.deltaTime);
+
+
 
             //Basic Clean Up, set the Bullets to self destruct after 10 Seconds, I am being VERY generous here, normally 3 seconds is plenty.
             Destroy(Temporary_Bullet_Handler, 10.0f);
