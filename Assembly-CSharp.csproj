@@ -55,9 +55,12 @@
   <ItemGroup>
      <Compile Include="Assets\CameraMouseFollow.cs" />
      <Compile Include="Assets\EnemyMovement.cs" />
+     <Compile Include="Assets\EnemyMovement_AddForce.cs" />
+     <Compile Include="Assets\enemySpawner.cs" />
      <Compile Include="Assets\PlayerJumping.cs" />
      <Compile Include="Assets\PlayerMovement.cs" />
      <Compile Include="Assets\Press_Space_to_Fire.cs" />
+     <Compile Include="Assets\WorldController.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/Jelle/workspace/Assignment2_gravity/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

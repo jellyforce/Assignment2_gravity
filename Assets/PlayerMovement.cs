@@ -44,7 +44,8 @@ public class PlayerMovement : MonoBehaviour
 
 
         // restarting game
-        if(Input.GetButton("restartGame")){
+        if (Input.GetButton("restartGame"))
+        {
 
             // punt waar hij is
             // punt waarnartoe
@@ -57,28 +58,54 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-    }
 
-    private void FixedUpdate() {
-                // Walking
-        // ==================================================================
+        
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
             // create new vector without changing the x-/z-axis and let the object rotate on
             // the new obtained y-axis based on player-input
             // transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * movementSpeed * Time.deltaTime);
-        
+            rb.drag = 0;
+
+
             // horizontale & verticale waarde vd input vd player
             float h = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
             float v = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
 
             //Debug.Log(h);
             //Debug.Log(v);
+<<<<<<< Updated upstream
+=======
+
+            rb.useGravity = false;
+>>>>>>> Stashed changes
 
             rb.AddForce(transform.right * h, ForceMode.Impulse);
             rb.AddForce(transform.forward * v, ForceMode.Impulse);
-        
-        
+
+            rb.useGravity = true;
+
+
+        }
+
+
+    }
+
+    private void FixedUpdate()
+    {
+        // Walking
+        // ==================================================================
+        // w-a-s-d
+
+
+
+
+        if (Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
+        {
+            //rb.AddForce(0, -5000, 0);
+            rb.drag = 500;
+            Debug.Log("stopped pressing movement");
+
         }
 
     }
